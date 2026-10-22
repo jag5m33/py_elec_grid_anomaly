@@ -19,3 +19,4 @@ seaborn==0.13.2
 six==1.17.0
 threadpoolctl==3.7.0
 tzdata==2026.5
+statsmodels==0.15.0
