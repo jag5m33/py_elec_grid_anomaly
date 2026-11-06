@@ -49,6 +49,8 @@ class IsolationForestAnomalyDetector:
         THE THREE OUTPUTS - same number, three forms
             score_samples(x)      the raw mark. How weird is this row?
                                   More negative = weirder. Always between -1 and 0.
+                                  - It calculates the average number of random feature splits required to isolate a point across all trees. 
+                                  - Shorter path lengths mean the point isolates very quickly, yielding a higher anomaly score
 
             offset_               where the line is drawn. ONE number, set by
                                   contamination. Below it = anomaly, above = normal.
