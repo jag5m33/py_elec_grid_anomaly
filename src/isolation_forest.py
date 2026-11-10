@@ -127,18 +127,18 @@ class IsolationForestAnomalyDetector:
         # natural cut point, and whatever you flag is just "the lowest N%" indicative of decision not a data structure.
         scores = self.model.score_samples(x)
 
-        plt.figure(figsize=(9, 5))
-        plt.hist(scores, bins=bins, color='steelblue', edgecolor='none')
-        plt.axvline(self.model.offset_, color='red', linestyle='--',
+        fig, ax = plt.subplots(figsize=(9, 5))
+        ax.hist(scores, bins = bins, color='steelblue', edgecolor='none')
+        ax.axvline(self.model.offset_, color='red', linestyle='--',
                     label=f'cutoff {self.model.offset_:.4f}')
-        plt.xlabel('anomaly score (lower = more anomalous)')
-        plt.ylabel('rows')
-        plt.title(f'Anomaly score distribution - {name}')
-        plt.legend()
-        plt.grid(alpha=0.3)
+        ax.set_xlabel('anomaly score (lower = more anomalous)')
+        ax.set_ylabel('rows')
+        ax.set_title(f'Anomaly score distribution - {name}')
+        ax.legend()
+        ax.grid(alpha=0.3)
         plt.show()
 
-        return scores
+        return scores, fig
 
     def top_anomalies(self, x, n=20):
         # The real evaluation step: read the most anomalous rows and judge them
